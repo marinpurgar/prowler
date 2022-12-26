@@ -79,7 +79,7 @@ class AWS_Provider:
 def assume_role(audit_info: AWS_Audit_Info) -> dict:
     try:
         # set the info to assume the role from the partition, account and role name
-        sts_client = audit_info.original_session.client("sts")
+        sts_client = audit_info.audit_session.client("sts")
         # If external id, set it to the assume role api call
         if audit_info.assumed_role_info.external_id:
             assumed_credentials = sts_client.assume_role(
